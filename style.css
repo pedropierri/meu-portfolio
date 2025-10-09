@@ -1,0 +1,418 @@
+/*
+  ==================================
+  1. VARIÁVEIS DE CORES (PALETA DARK CIANO/AZUL)
+  ==================================
+*/
+:root {
+    --cor-fundo: #111111;
+    --cor-texto: #F5F5F5;
+    --neon-primario: #00FFFF;
+    --neon-secundario: #40E0D0;
+    --cor-card-fundo: #1C1A25;
+    --espacamento-padrao: 80px;
+}
+
+/*
+  ==================================
+  2. RESET BÁSICO E TIPOGRAFIA
+  ==================================
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    font-family: 'Consolas', 'Monaco', 'Lucida Console', 'Courier New', monospace;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Links em geral */
+a {
+    color: var(--neon-primario);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--neon-secundario);
+}
+
+
+/*
+  ==================================
+  3. ESTILOS GERAIS DE SEÇÃO
+  ==================================
+*/
+section {
+    padding: var(--espacamento-padrao) 5%;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section-title {
+    font-size: 3em;
+    margin-bottom: 10px;
+    color: var(--neon-primario);
+    text-shadow: 0 0 0px var(--neon-primario), 0 0 5px var(--neon-primario);
+}
+
+.section-subtitle {
+    font-size: 1.2em;
+    color: #AAAAAA; 
+    margin-bottom: 20px;
+}
+
+.divider {
+    border: none;
+    height: 1px;
+    width: 80%;
+    background: linear-gradient(to right, 
+        transparent, 
+        var(--neon-primario), 
+        transparent
+    );
+    box-shadow: 0 0 3px var(--neon-primario);
+    margin: 40px auto;
+}
+
+/*
+  ==================================
+  4. HEADER E NAVEGAÇÃO (CLEAN & INTERATIVO)
+  ==================================
+*/
+.main-header {
+    background-color: #111111f8;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: fixed; 
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header-content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    transition: padding 0.3s ease;
+}
+
+.logo a {
+    font-size: 1.6em; 
+    font-weight: bold;
+    color: var(--neon-primario);
+    text-shadow: 0 0 3px var(--neon-primario);
+    transition: font-size 0.3s ease;
+}
+
+.main-header ul {
+    list-style: none;
+    display: flex;
+}
+
+.main-header li {
+    margin-left: 35px;
+}
+
+.nav-link {
+    font-size: 1.1em;
+    color: var(--cor-texto);
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s ease, text-shadow 0.3s ease; 
+}
+
+.nav-link:hover {
+    color: var(--neon-primario);
+    text-shadow: 0 0 5px var(--neon-primario); 
+}
+
+.main-header.scrolled {
+    background-color: var(--cor-card-fundo);
+    padding: 0 5%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.main-header.scrolled .header-content-wrapper {
+    padding: 10px 0;
+}
+
+.main-header.scrolled .logo a {
+    font-size: 1.4em;
+}
+
+/* Media Query (Reduzida para foco) */
+@media (max-width: 768px) {
+    .header-content-wrapper { flex-direction: column; padding: 15px 5%; }
+    .main-header ul { margin-top: 10px; justify-content: center; }
+    .main-header li { margin: 0 10px; }
+} 
+
+/*
+  ==================================
+  5. HERO / BIOGRAFIA (ENTRADA)
+  ==================================
+*/
+.hero-section {
+    padding: 140px 5%;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-around;
+    align-items: center;
+    text-align: left;
+}
+
+.bio-content { max-width: 50%; }
+.title-code { font-size: 3.5em; margin-bottom: 10px; }
+.subtitle-code {
+    color: var(--neon-primario);
+    font-size: 1.5em;
+    margin-bottom: 30px;
+    text-shadow: 0 0 3px var(--neon-primario); 
+}
+
+.bio-text { font-size: 1.1em; margin-bottom: 40px; color: #CCCCCC; }
+
+.cta-button {
+    display: inline-block;
+    padding: 12px 30px;
+    border: 2px solid var(--neon-primario);
+    color: var(--neon-primario);
+    background-color: transparent;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 5px var(--neon-primario); 
+}
+
+.cta-button:hover {
+    background-color: var(--neon-primario);
+    color: var(--cor-fundo); 
+    box-shadow: 0 0 10px var(--neon-primario); 
+}
+
+.profile-image-container {
+    width: 500px;
+    height: 500px;
+    border: 3px solid var(--neon-primario);
+    border-radius: 50%; 
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 10px var(--neon-primario); 
+}
+
+.profile-placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 1.2em;
+    background-color: var(--cor-card-fundo);
+    color: var(--neon-secundario);
+}
+
+
+/*
+  ==================================
+  6. SEÇÃO DE TECNOLOGIAS (SKILLS)
+  ==================================
+*/
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1150px;
+}
+
+.skill-item {
+    background-color: var(--cor-card-fundo);
+    padding: 20px 40px;
+    border-radius: 5px;
+    text-align: center;
+    width: 180px;
+    border: 1px solid var(--cor-card-fundo);
+    /* CORREÇÃO: Transição completa para que o slide-up e hover funcionem */
+    transition: all 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; 
+    cursor: default;
+    
+    border-left: 3px solid var(--neon-primario);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.skill-item:hover {
+    border: 1px solid var(--neon-secundario);
+    box-shadow: 0 0 10px var(--neon-secundario);
+    transform: translateY(-5px);
+    border-left: 3px solid var(--neon-secundario);
+    transition: all 0.3s ease;
+}
+
+.skill-icon {
+    font-size: 3em;
+    margin-bottom: 10px;
+    text-shadow: 0 0 3px currentColor; 
+}
+
+/* Cores dos Ícones (Mantido) */
+.fa-html5 { color: #E34F26; } 
+.fa-css3-alt { color: #1572B6; } 
+.fa-js-square { color: #F7DF1E; }
+.fa-react { color: #61DAFB; }
+.fa-wordpress { color: #21759B; }
+
+
+/*
+  ==================================
+  7. SEÇÃO DE PROJETOS (PROJECTS)
+  ==================================
+*/
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.project-card {
+    background-color: var(--cor-card-fundo);
+    padding: 30px;
+    border-radius: 5px;
+    border-top: 3px solid var(--neon-primario);
+    /* CORREÇÃO: Transição completa para que o slide-up e hover funcionem */
+    transition: all 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    border-top: 3px solid var(--neon-secundario);
+    box-shadow: 0 0 15px var(--neon-secundario);
+    transition: all 0.3s ease;
+}
+
+.project-card h3 { color: var(--neon-primario); margin-bottom: 10px; font-size: 1.5em; }
+.project-card p { color: #CCCCCC; margin-bottom: 20px; }
+.project-links a { margin-right: 15px; font-weight: bold; }
+
+
+/*
+  ==================================
+  8. REDES SOCIAIS / CONTATO
+  ==================================
+*/
+.social-links { display: flex; gap: 30px; margin-top: 20px; margin-bottom: 40px; }
+.social-icon-link { color: var(--neon-primario); transition: all 0.3s ease; font-size: 3em;}
+.social-icon-link:hover { 
+    color: var(--neon-secundario); 
+    text-shadow: 0 0 8px var(--neon-secundario); 
+    transform: scale(1.1);
+}
+.contact-email a { font-weight: bold; text-decoration: underline dotted; }
+
+
+/*
+  ==================================
+  9. RODAPÉ (FOOTER)
+  ==================================
+*/
+.main-footer {
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid var(--cor-card-fundo);
+    color: #888888;
+    font-size: 0.9em;
+}
+
+/*
+  ==================================
+  10. ANIMAÇÕES (SCROLL REVEAL E CURSOR)
+  ==================================
+*/
+#cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.2em;
+    margin-left: 2px;
+    vertical-align: middle;
+    background-color: var(--neon-primario);
+    animation: blink-cursor 0.75s step-end infinite;
+}
+
+@keyframes blink-cursor {
+    from, to { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+/* 1. Define o estado INICIAL dos elementos (ESCONDIDOS) */
+.reveal-hidden, .type-on-scroll {
+    /* TRANSFORMAÇÃO E OPACIDADE */
+    opacity: 0 !important;
+    transform: translateY(20px) !important; 
+    
+    /* CONFIGURAÇÃO DE TRANSIÇÃO (sem !important no delay) */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition-delay: var(--animation-delay); 
+}
+
+/* 2. Define o estado FINAL dos elementos (VISÍVEIS) */
+.reveal-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* Correção: Garante que o H2 que digita fique visível, mas o texto não herde o slide-up */
+.section-title.type-on-scroll {
+    /* O elemento em si deve ser visível para o JS digitar nele */
+    opacity: 1 !important; 
+    transform: translateY(0) !important;
+}
+
+/* Zera a animação do H2 para que apenas a digitação ocorra */
+.section-title.type-on-scroll {
+    transition: none !important;
+    transition-delay: 0ms !important;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* O parágrafo de bio na HOME (subtitle-code) não deve ser animado */
+.hero-section .subtitle-code {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/*
+  ==================================
+  11. RESPONSIVIDADE (MOBILE-FIRST)
+  ==================================
+*/
+@media (max-width: 768px) {
+    /* Força todos os elementos a aparecerem no celular, desativando o JavaScript reveal */
+    .reveal-hidden, .type-on-scroll {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        transition: none !important; 
+        transition-delay: 0ms !important;
+    }
+
+    .hero-section { flex-direction: column; padding: 50px 5%; }
+    .bio-content { max-width: 100%; order: 2; }
+    .profile-image-container { margin-bottom: 30px; order: 1; width: 300px; height: 300px;} /* Ajuste de tamanho da foto */
+    
+    .title-code { font-size: 2.5em; }
+    .skills-grid, .projects-grid { grid-template-columns: 1fr; }
+    .skill-item { width: 100%; }
+}
