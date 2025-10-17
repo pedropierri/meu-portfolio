@@ -1,8 +1,3 @@
-/*
-  ==================================
-  1. VARIÁVEIS DE CORES (PALETA DARK CIANO/AZUL)
-  ==================================
-*/
 :root {
     --cor-fundo: #111111;
     --cor-texto: #F5F5F5;
@@ -12,11 +7,6 @@
     --espacamento-padrao: 80px;
 }
 
-/*
-  ==================================
-  2. RESET BÁSICO E TIPOGRAFIA
-  ==================================
-*/
 * {
     margin: 0;
     padding: 0;
@@ -31,7 +21,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Links em geral */
 a {
     color: var(--neon-primario);
     text-decoration: none;
@@ -84,7 +73,7 @@ section {
 
 /*
   ==================================
-  4. HEADER E NAVEGAÇÃO (CLEAN & INTERATIVO)
+  4. HEADER E NAV
   ==================================
 */
 .main-header {
@@ -149,7 +138,6 @@ section {
     font-size: 1.4em;
 }
 
-/* Media Query (Reduzida para foco) */
 @media (max-width: 768px) {
     .header-content-wrapper { flex-direction: column; padding: 15px 5%; }
     .main-header ul { margin-top: 10px; justify-content: center; }
@@ -158,7 +146,7 @@ section {
 
 /*
   ==================================
-  5. HERO / BIOGRAFIA (ENTRADA)
+  5. HERO / BIOGRAFIA
   ==================================
 */
 .hero-section {
@@ -225,7 +213,7 @@ section {
 
 /*
   ==================================
-  6. SEÇÃO DE TECNOLOGIAS (SKILLS)
+  6. SKILLS
   ==================================
 */
 .skills-grid {
@@ -275,7 +263,7 @@ section {
 
 /*
   ==================================
-  7. SEÇÃO DE PROJETOS (PROJECTS)
+  7. PROJECTS
   ==================================
 */
 .projects-grid {
@@ -309,7 +297,7 @@ section {
 
 /*
   ==================================
-  8. REDES SOCIAIS / CONTATO
+  8. REDES SOCIAIS
   ==================================
 */
 .social-links { display: flex; gap: 30px; margin-top: 20px; margin-bottom: 40px; }
@@ -324,7 +312,7 @@ section {
 
 /*
   ==================================
-  9. RODAPÉ (FOOTER)
+  9. FOOTER
   ==================================
 */
 .main-footer {
@@ -337,7 +325,7 @@ section {
 
 /*
   ==================================
-  10. ANIMAÇÕES (SCROLL REVEAL E CURSOR)
+  10. ANIMAÇÕE
   ==================================
 */
 #cursor {
@@ -355,31 +343,24 @@ section {
     50% { opacity: 1; }
 }
 
-/* 1. Define o estado INICIAL dos elementos (ESCONDIDOS) */
 .reveal-hidden, .type-on-scroll {
-    /* TRANSFORMAÇÃO E OPACIDADE */
     opacity: 0 !important;
     transform: translateY(20px) !important; 
-    
-    /* CONFIGURAÇÃO DE TRANSIÇÃO (sem !important no delay) */
+
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     transition-delay: var(--animation-delay); 
 }
 
-/* 2. Define o estado FINAL dos elementos (VISÍVEIS) */
 .reveal-visible {
     opacity: 1 !important;
     transform: translateY(0) !important;
 }
 
-/* Correção: Garante que o H2 que digita fique visível, mas o texto não herde o slide-up */
 .section-title.type-on-scroll {
-    /* O elemento em si deve ser visível para o JS digitar nele */
     opacity: 1 !important; 
     transform: translateY(0) !important;
 }
 
-/* Zera a animação do H2 para que apenas a digitação ocorra */
 .section-title.type-on-scroll {
     transition: none !important;
     transition-delay: 0ms !important;
@@ -387,7 +368,6 @@ section {
     transform: translateY(0);
 }
 
-/* O parágrafo de bio na HOME (subtitle-code) não deve ser animado */
 .hero-section .subtitle-code {
     opacity: 1;
     transform: translateY(0);
@@ -396,11 +376,11 @@ section {
 
 /*
   ==================================
-  11. RESPONSIVIDADE (MOBILE-FIRST)
+  11. RESPONSIVIDADE
   ==================================
 */
 @media (max-width: 768px) {
-    /* Força todos os elementos a aparecerem no celular, desativando o JavaScript reveal */
+
     .reveal-hidden, .type-on-scroll {
         opacity: 1 !important;
         transform: translateY(0) !important;
@@ -410,7 +390,7 @@ section {
 
     .hero-section { flex-direction: column; padding: 50px 5%; }
     .bio-content { max-width: 100%; order: 2; }
-    .profile-image-container { margin-bottom: 30px; order: 1; width: 300px; height: 300px;} /* Ajuste de tamanho da foto */
+    .profile-image-container { margin-bottom: 30px; order: 1; width: 300px; height: 300px;}
     
     .title-code { font-size: 2.5em; }
     .skills-grid, .projects-grid { grid-template-columns: 1fr; }

@@ -1,8 +1,3 @@
-// ===============================================
-// JAVASCRIPT FINAL PARA INTERATIVIDADE
-// ===============================================
-
-// Helper function para digitação de UMA ÚNICA VEZ (para Títulos de Seção)
 function typeStatic(element, text) {
   let i = 0;
   const typingDelay = 70;
@@ -18,16 +13,12 @@ function typeStatic(element, text) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // ----------------------------------------------------
-  // 1. TYPEWRITER EFFECT (ANIMAÇÃO EM LOOP NA BIO)
-  // ----------------------------------------------------
-
   const typedTextElement = document.getElementById("typed-text");
   const textArray = [
-    "front-end developer",
-    "react developer",
-    "wordpress developer",
-    "FIAP student",
+    "front-end",
+    "react-developer",
+    "wordpress-developer",
+    "FIAP-student",
   ];
 
   const typingDelay = 80;
