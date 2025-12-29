@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const textArray = [
     "front-end",
     "react-developer",
-    "wordpress-developer",
     "FIAP-student",
   ];
 
