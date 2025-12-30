@@ -80,7 +80,6 @@ document.addEventListener("DOMContentLoaded", () => {
     { threshold: 0.1 }
   );
 
-  // ⚠️ EXCLUÍMOS cards e ícones daqui
   document
     .querySelectorAll(
       ".reveal-hidden:not(.skill-item):not(.project-card):not(.social-icon-link), .type-on-scroll"
