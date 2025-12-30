@@ -14,11 +14,7 @@ function typeStatic(element, text) {
 
 document.addEventListener("DOMContentLoaded", () => {
   const typedTextElement = document.getElementById("typed-text");
-  const textArray = [
-    "front-end",
-    "react-developer",
-    "FIAP-student",
-  ];
+  const textArray = ["front-end", "react-developer", "FIAP-student"];
 
   const typingDelay = 80;
   const erasingDelay = 80;
