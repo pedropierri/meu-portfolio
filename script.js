@@ -1,34 +1,23 @@
-function typeStatic(element, text) {
-  let i = 0;
-  const typingDelay = 70;
-
-  function typeChar() {
-    if (i < text.length) {
-      element.textContent += text.charAt(i);
-      i++;
-      setTimeout(typeChar, typingDelay);
-    }
-  }
-  typeChar();
-}
-
 document.addEventListener("DOMContentLoaded", () => {
+
+  // ====================================================
+  // 1. TYPING EFFECT (HERO)
+  // ====================================================
   const typedTextElement = document.getElementById("typed-text");
   const textArray = ["front-end", "react-developer", "FIAP-student"];
+
+  let textArrayIndex = 0;
+  let charIndex = 0;
 
   const typingDelay = 80;
   const erasingDelay = 80;
   const newTextDelay = 2000;
 
-  let textArrayIndex = 0;
-  let charIndex = 0;
-
   function type() {
     if (!typedTextElement) return;
 
     if (charIndex < textArray[textArrayIndex].length) {
-      typedTextElement.textContent +=
-        textArray[textArrayIndex].charAt(charIndex);
+      typedTextElement.textContent += textArray[textArrayIndex].charAt(charIndex);
       charIndex++;
       setTimeout(type, typingDelay);
     } else {
@@ -38,74 +27,112 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function erase() {
     if (charIndex > 0) {
-      typedTextElement.textContent = textArray[textArrayIndex].substring(
-        0,
-        charIndex - 1
-      );
+      typedTextElement.textContent =
+        textArray[textArrayIndex].substring(0, charIndex - 1);
       charIndex--;
       setTimeout(erase, erasingDelay);
     } else {
-      textArrayIndex++;
-      if (textArrayIndex >= textArray.length) {
-        textArrayIndex = 0;
-      }
-      setTimeout(type, typingDelay + 100);
+      textArrayIndex = (textArrayIndex + 1) % textArray.length;
+      setTimeout(type, typingDelay);
     }
   }
 
-  if (typedTextElement) {
-    type();
+  type();
+
+  // ====================================================
+  // 2. TYPE ON SCROLL (TÍTULOS)
+  // ====================================================
+  function typeStatic(element, text) {
+    let i = 0;
+    const delay = 60;
+
+    function typeChar() {
+      if (i < text.length) {
+        element.textContent += text.charAt(i);
+        i++;
+        setTimeout(typeChar, delay);
+      }
+    }
+
+    typeChar();
   }
 
-  // ----------------------------------------------------
-  // 3. SCROLL REVEAL (CARDS DESLIZAM / TÍTULOS DIGITAM)
-  // ----------------------------------------------------
-
-  function setupScrollReveal() {
-    const options = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.2, // Dispara quando 20% do elemento está visível
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
+  // ====================================================
+  // 3. REVEAL PADRÃO (APENAS TEXTOS E TÍTULOS)
+  // ====================================================
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
       entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
         const el = entry.target;
 
-        if (entry.isIntersecting) {
-          // Título (type-on-scroll): Inicia a digitação
-          if (el.classList.contains("type-on-scroll")) {
-            const fullText = el.getAttribute("data-text");
-            typeStatic(el, fullText);
-          }
-          // Card/Subtítulo (reveal-hidden): Inicia o slide-up
-          else if (el.classList.contains("reveal-hidden")) {
-            el.classList.add("reveal-visible");
-          }
-
-          // Para de observar após a animação
-          observer.unobserve(el);
+        if (el.classList.contains("type-on-scroll")) {
+          const text = el.getAttribute("data-text");
+          typeStatic(el, text);
+        } else {
+          el.classList.add("reveal-visible");
         }
-      });
-    }, options);
 
-    const revealElements = document.querySelectorAll(
-      ".reveal-hidden, .type-on-scroll"
+        observer.unobserve(el);
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  // ⚠️ EXCLUÍMOS cards e ícones daqui
+  document
+    .querySelectorAll(
+      ".reveal-hidden:not(.skill-item):not(.project-card):not(.social-icon-link), .type-on-scroll"
+    )
+    .forEach((el) => revealObserver.observe(el));
+
+  // ====================================================
+  // 4. REVEAL SEQUENCIAL (CORE REAL)
+  // ====================================================
+  function revealSequential(containerSelector, itemSelector, delay = 150) {
+    const container = document.querySelector(containerSelector);
+    if (!container) return;
+
+    const items = container.querySelectorAll(itemSelector);
+
+    // GARANTE que começam invisíveis
+    items.forEach((item) => {
+      item.classList.remove("reveal-visible");
+    });
+
+    const observer = new IntersectionObserver(
+      ([entry], obs) => {
+        if (!entry.isIntersecting) return;
+
+        items.forEach((item, index) => {
+          setTimeout(() => {
+            item.classList.add("reveal-visible");
+          }, index * delay);
+        });
+
+        obs.unobserve(container);
+      },
+      { threshold: 0.25 }
     );
 
-    let delay = 0;
-    const staggerIncrement = 150; // Atraso sequencial
-
-    revealElements.forEach((el) => {
-      // Aplica o atraso sequencial SOMENTE aos elementos de slide-up
-      if (el.classList.contains("reveal-hidden")) {
-        el.style.setProperty("--animation-delay", `${delay}ms`);
-        delay += staggerIncrement;
-      }
-
-      observer.observe(el);
-    });
+    observer.observe(container);
   }
 
-  setupScrollReveal();
+  // ====================================================
+  // 5. APLICAÇÃO SEQUENCIAL
+  // ====================================================
+
+  revealSequential(".skills-grid", ".skill-item", 120);
+  revealSequential(".projects-grid", ".project-card", 180);
+  revealSequential(".social-links", ".social-icon-link", 120);
+
+  // ====================================================
+  // 6. HEADER SCROLL EFFECT
+  // ====================================================
+  const header = document.getElementById("main-header");
+  window.addEventListener("scroll", () => {
+    header.classList.toggle("scrolled", window.scrollY > 50);
+  });
+
 });
